@@ -4,8 +4,6 @@ ignore+ = ,.git,.tox,migrations,node_modules,.pycharm_helpers
 init-hook="import sys; sys.path.extend(['lms/djangoapps', 'cms/djangoapps', 'common/djangoapps'])"
 
 [MESSAGES CONTROL]
-# Disable unicode-format-string until we can agree to turn it on.
-disable+ = ,unicode-format-string
 
 [BASIC]
 attr-rgx = [a-z_][a-z0-9_]{2,40}$

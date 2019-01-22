@@ -345,7 +345,7 @@ disable =
 	unpacking-in-except,
 	using-cmp-argument,
 	xrange-builtin,
-	zip-builtin-not-iterating,,unicode-format-string
+	zip-builtin-not-iterating,
 
 [REPORTS]
 output-format = text
