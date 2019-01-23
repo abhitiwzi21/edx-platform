@@ -556,7 +556,7 @@ class SoftwareSecurePhotoVerification(PhotoVerification):
             status is set to `approved`
             expiry_date is set to one year from now
         """
-        self.expiry_date = date.today() + timedelta(
+        self.expiry_date = datetime.now(pytz.UTC) + timedelta(
             days=settings.VERIFY_STUDENT["DAYS_GOOD_FOR"]
         )
         super(SoftwareSecurePhotoVerification, self).approve(user_id, service)

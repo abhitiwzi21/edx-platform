@@ -1774,7 +1774,7 @@ class TestPhotoVerificationResultsCallback(ModuleStoreTestCase):
         """
         Test for verification passed.
         """
-        expiry_date = date.today() + timedelta(
+        expiry_date = datetime.now(pytz.UTC) + timedelta(
             days=settings.VERIFY_STUDENT["DAYS_GOOD_FOR"]
         )
         data = {
@@ -1792,7 +1792,7 @@ class TestPhotoVerificationResultsCallback(ModuleStoreTestCase):
         )
         attempt = SoftwareSecurePhotoVerification.objects.get(receipt_id=self.receipt_id)
         self.assertEqual(attempt.status, u'approved')
-        self.assertEqual(attempt.expiry_date.date(), expiry_date)
+        self.assertEqual(attempt.expiry_date.date(), expiry_date.date())
         self.assertEquals(response.content, 'OK!')
         self.assertEqual(len(mail.outbox), 1)
 
