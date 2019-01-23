@@ -14,7 +14,16 @@
     list-style: none;
     padding: 0;
     margin: 0;
-  }
+
+    li {
+      margin: 5px 0;
+
+      .alert.alert-warning .message-content .enroll-btn.btn-link {
+        color: #004368;
+      }
+
+    }
+  } 
 
 }
 
