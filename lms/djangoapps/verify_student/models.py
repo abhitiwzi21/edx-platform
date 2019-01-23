@@ -13,7 +13,7 @@ import json
 import logging
 import os.path
 import uuid
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from email.utils import formatdate
 
 import pytz

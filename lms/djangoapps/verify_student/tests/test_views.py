@@ -5,7 +5,7 @@ Tests of verify_student views.
 
 import json
 import urllib
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from uuid import uuid4
 
 import boto
