@@ -125,5 +125,5 @@ class TestPopulateExpiryDate(MockS3Mixin, TestCase):
         with LogCapture(LOGGER_NAME) as logger:
             call_command('populate_expiry_date')
             logger.check(
-                (LOGGER_NAME, 'INFO', "IndexError: No approved entries found in SoftwareSecurePhotoVerification")
+                (LOGGER_NAME, 'INFO', "AttributeError: No approved entries found in SoftwareSecurePhotoVerification")
             )

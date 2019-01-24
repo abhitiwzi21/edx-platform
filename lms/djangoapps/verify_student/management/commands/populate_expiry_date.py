@@ -52,7 +52,7 @@ class Command(BaseCommand):
         super(Command, self).__init__(*args, **kwargs)
         self.sspv = SoftwareSecurePhotoVerification.objects.filter(status='approved',
                                                                    expiry_date__isnull=True
-                                                                   ).order_by('-user_id')
+                                                                   ).order_by('user_id')
 
     def handle(self, *args, **options):
         """
@@ -66,16 +66,16 @@ class Command(BaseCommand):
         sleep_time = options['sleep_time']
 
         try:
-            max_user_id = self.sspv[0].user_id
-            batch_start = self.sspv.reverse()[0].user_id
+            max_user_id = self.sspv.last().user_id
+            batch_start = self.sspv.first().user_id
             batch_stop = batch_start + batch_size
-        except IndexError:
-            logger.info("IndexError: No approved entries found in SoftwareSecurePhotoVerification")
+        except AttributeError:
+            logger.info("AttributeError: No approved entries found in SoftwareSecurePhotoVerification")
             return
 
         while batch_start <= max_user_id:
             batch_queryset = self.sspv.filter(user_id__gte=batch_start, user_id__lt=batch_stop)
-            users = batch_queryset.order_by().values('user_id').distinct()
+            users = batch_queryset.values('user_id').distinct()
 
             for user in users:
                 recent_verification = self.find_recent_verification(user['user_id'])
