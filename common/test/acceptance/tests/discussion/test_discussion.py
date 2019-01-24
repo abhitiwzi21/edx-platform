@@ -3,7 +3,6 @@ Tests for discussion pages
 """
 
 import datetime
-import time
 from unittest import skip
 from uuid import uuid4
 
@@ -961,9 +960,7 @@ class DiscussionEditorPreviewTest(UniqueCourseTest):
         self.page = DiscussionTabHomePage(self.browser, self.course_id)
         self.page.visit()
         self.page.click_new_post_button()
-
-        # sleep/wait added to allow Major MathJax a11y files to load
-        time.sleep(5)
+        self.page.wait_for_mathjax()
 
     def test_text_rendering(self):
         """When I type plain text into the editor, it should be rendered as plain text in the preview box"""

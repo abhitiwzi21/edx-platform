@@ -5,7 +5,6 @@ Bok choy acceptance tests for problems in the LMS
 See also old lettuce tests in lms/djangoapps/courseware/features/problems.feature
 """
 from textwrap import dedent
-import time
 import ddt
 
 from common.test.acceptance.fixtures.course import CourseFixture, XBlockFixtureDesc
@@ -950,7 +949,7 @@ class FormulaProblemTest(ProblemsTest):
         """
         super(FormulaProblemTest, self).setUp()
         self.courseware_page.visit()
-        time.sleep(6)
+        self.courseware_page.wait_for_mathjax()
 
     def get_problem(self):
         """
@@ -1047,7 +1046,7 @@ class FormulaProblemRandomizeTest(ProblemsTest):
         """
         super(FormulaProblemRandomizeTest, self).setUp()
         self.courseware_page.visit()
-        time.sleep(6)
+        self.courseware_page.wait_for_mathjax()
 
     def get_problem(self):
         """
